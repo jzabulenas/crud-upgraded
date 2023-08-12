@@ -23,6 +23,10 @@ public class Person {
 	private String state;
 	private int zipCode;
 	private String phoneNumber;
+	
+	public Person() {
+		
+	}
 
 	public Person(String firstName, String lastName, String birthday, String address, String city, String state,
 			int zipCode, String phoneNumber) {
