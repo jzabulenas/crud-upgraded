@@ -24,6 +24,18 @@ public class Person {
 	private int zipCode;
 	private String phoneNumber;
 
+	public Person(String firstName, String lastName, String birthday, String address, String city, String state,
+			int zipCode, String phoneNumber) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.birthday = birthday;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.zipCode = zipCode;
+		this.phoneNumber = phoneNumber;
+	}
+
 	public long getId() {
 		return id;
 	}
