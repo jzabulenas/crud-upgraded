@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,4 +48,17 @@ class PersonControllerTest {
                 .andExpect(jsonPath("$[1].lastName").value("Bonilla"));
     }
 
+	@Test
+	public void testGetPerson() throws Exception {
+		Person person = new Person("Michael", "Wood", "January 28, 1973", "3664 Vineyard Drive", 
+        		"Cleveland", "Ohio", 44115, "440-457-6732");
+		
+		when(personRepository.findById(0L)).thenReturn(Optional.of(person));
+		
+		mockMvc.perform(get("/api/people/0"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.id").value(0))
+        .andExpect(jsonPath("$.firstName").value("Michael"))
+        .andExpect(jsonPath("$.lastName").value("Wood"));
+	}
 }
