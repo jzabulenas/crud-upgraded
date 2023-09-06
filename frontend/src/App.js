@@ -4,7 +4,9 @@ import People from './components/People';
 
 function App() {
   return (
-    <People />
+    <main>
+      <People />
+    </main>
   );
 }
 

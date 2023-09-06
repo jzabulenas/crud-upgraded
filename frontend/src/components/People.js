@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import "../style.scss";
 
 export default function People() {
     const [people, setPeople] = useState([]);
@@ -22,7 +23,7 @@ export default function People() {
     }, []);
 
     return (
-        <div>
+        <article className='container'>
             {people.map(person => {
                 return (
                     <>
@@ -30,6 +31,6 @@ export default function People() {
                     </>
                 )
             })}
-        </div>
+        </article>
     );
 }
