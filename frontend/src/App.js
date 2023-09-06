@@ -9,7 +9,7 @@ function App() {
     let active = true;
 
     const fetchData = async () => {
-      const response = await fetch(`http://localhost:8080/api/people`);
+      const response = await fetch(`http://localhost:8080/people`);
       const data = await response.json();
 
       if (active) {
