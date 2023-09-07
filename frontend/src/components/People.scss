@@ -1,0 +1,50 @@
+@media screen and (max-width: 700px) {
+
+    // Set App.css container width so table goes full width
+    .container {
+        width: auto;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 40px;
+
+        td {
+            padding: 7px 10px;
+            border: 1px solid;
+        }
+    }
+
+    .responsive {
+        thead {
+            visibility: hidden;
+            height: 0;
+            position: absolute;
+        }
+
+        tr {
+            display: block;
+            margin-bottom: .625em;
+        }
+
+        td {
+            border: 1px solid;
+            border-bottom: none;
+            display: block;
+            font-size: .8em;
+            text-align: right;
+
+            &::before {
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            &:last-child {
+                border-bottom: 1px solid;
+            }
+        }
+    }
+}
