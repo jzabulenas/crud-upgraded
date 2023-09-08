@@ -23,6 +23,10 @@ export default function People() {
         };
     }, []);
 
+    function updateUser(id) {
+
+    }
+
     return (
         <article className='container'>
             <table className='table responsive'>
@@ -37,6 +41,7 @@ export default function People() {
                         <th>State</th>
                         <th>Zip code</th>
                         <th>Phone number</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
 
@@ -53,6 +58,7 @@ export default function People() {
                                 <td data-label="State">{person.state}</td>
                                 <td data-label="Zip code">{person.zipCode}</td>
                                 <td data-label="Phone number">{person.phoneNumber}</td>
+                                <td data-label="Update"><button onClick={updateUser(person.id)}>Delete</button></td>
                             </tr>
                         )
                     })}
