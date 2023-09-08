@@ -1,9 +1,30 @@
 import { useEffect, useState } from 'react';
 import "../style.scss";
 import "./People.scss";
+import PersonUpdateForm from './PersonUpdateForm';
 
 export default function People() {
     const [people, setPeople] = useState([]);
+    const [updatingPerson, setUpdatingPerson] = useState(null);
+
+    const handleUpdateClick = (person) => {
+        setUpdatingPerson(person);
+    };
+
+    const handleFormSubmit = async (updatedPerson) => {
+        // Perform PUT request to update user data in the backend
+        // Once the update is successful, update local state
+        // and hide the form (setEditingUser(null))
+
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...updatedPerson })
+        };
+
+        const response = await fetch(`http://localhost:8080/people/${updatedPerson.id}`, requestOptions);
+        setUpdatingPerson(null);
+    };
 
     useEffect(() => {
         let active = true;
@@ -21,11 +42,7 @@ export default function People() {
         return () => {
             active = false;
         };
-    }, []);
-
-    function updateUser(id) {
-
-    }
+    }, [updatingPerson]);
 
     return (
         <article className='container'>
@@ -41,7 +58,7 @@ export default function People() {
                         <th>State</th>
                         <th>Zip code</th>
                         <th>Phone number</th>
-                        <th>Delete</th>
+                        <th>Update</th>
                     </tr>
                 </thead>
 
@@ -58,12 +75,19 @@ export default function People() {
                                 <td data-label="State">{person.state}</td>
                                 <td data-label="Zip code">{person.zipCode}</td>
                                 <td data-label="Phone number">{person.phoneNumber}</td>
-                                <td data-label="Update"><button onClick={updateUser(person.id)}>Delete</button></td>
+                                <td data-label="Update"><button onClick={() => handleUpdateClick(person)}>Update</button></td>
                             </tr>
                         )
                     })}
                 </tbody>
             </table>
+            {updatingPerson && (
+                <PersonUpdateForm
+                    person={updatingPerson}
+                    onSubmit={handleFormSubmit}
+                    onCancel={() => setUpdatingPerson(null)}
+                />
+            )}
         </article >
     );
 }
