@@ -6,6 +6,7 @@ import PersonUpdateForm from './PersonUpdateForm';
 export default function People() {
     const [people, setPeople] = useState([]);
     const [updatingPerson, setUpdatingPerson] = useState(null);
+    const [isDeleted, setIsDeleted] = useState(false);
 
     const handleUpdateClick = (person) => {
         setUpdatingPerson(person);
@@ -26,6 +27,16 @@ export default function People() {
         setUpdatingPerson(null);
     };
 
+    const handlePersonDelete = async (personId) => {
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        };
+
+        const response = await fetch(`http://localhost:8080/people/${personId}`, requestOptions);
+        setIsDeleted(!isDeleted);
+    };
+
     useEffect(() => {
         let active = true;
 
@@ -42,7 +53,7 @@ export default function People() {
         return () => {
             active = false;
         };
-    }, [updatingPerson]);
+    }, [updatingPerson, isDeleted]);
 
     return (
         <article className='container'>
@@ -76,8 +87,9 @@ export default function People() {
                                 <td data-label="Zip code">{person.zipCode}</td>
                                 <td data-label="Phone number">{person.phoneNumber}</td>
                                 <td data-label="Update"><button onClick={() => handleUpdateClick(person)}>Update</button></td>
+                                <td data-label="Delete"><button onClick={() => handlePersonDelete(person.id)}>Delete</button></td>
                             </tr>
-                        )
+                        );
                     })}
                 </tbody>
             </table>
@@ -90,4 +102,4 @@ export default function People() {
             )}
         </article >
     );
-}
+};
