@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,7 +64,15 @@ public class PersonController {
 	}
 
 	@DeleteMapping("/people/{id}")
-	public void deletePerson(@PathVariable long id) {
-		personRepository.deleteById(id);
+	public ResponseEntity<Void> deletePerson(@PathVariable long id) {
+		Optional<Person> person = personRepository.findById(id);
+
+		if (person.isPresent()) {
+			personRepository.deleteById(id);
+			return ResponseEntity.ok().build(); // 200 OK
+		} else {
+			return ResponseEntity.notFound().build(); // 404 Not Found
+		}
 	}
+
 }
