@@ -23,7 +23,8 @@ export default function People() {
             body: JSON.stringify({ ...updatedPerson })
         };
 
-        const response = await fetch(`http://localhost:8080/people/${updatedPerson.id}`, requestOptions);
+        const response = await fetch(`http://localhost:8080/people/${updatedPerson.id}`,
+            requestOptions);
         setUpdatingPerson(null);
     };
 
@@ -70,6 +71,7 @@ export default function People() {
                         <th>Zip code</th>
                         <th>Phone number</th>
                         <th>Update</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
 
@@ -86,8 +88,10 @@ export default function People() {
                                 <td data-label="State">{person.state}</td>
                                 <td data-label="Zip code">{person.zipCode}</td>
                                 <td data-label="Phone number">{person.phoneNumber}</td>
-                                <td data-label="Update"><button onClick={() => handleUpdateClick(person)}>Update</button></td>
-                                <td data-label="Delete"><button onClick={() => handlePersonDelete(person.id)}>Delete</button></td>
+                                <td data-label="Update"><button onClick=
+                                    {() => handleUpdateClick(person)}>Update</button></td>
+                                <td data-label="Delete"><button onClick=
+                                    {() => handlePersonDelete(person.id)}>Delete</button></td>
                             </tr>
                         );
                     })}
