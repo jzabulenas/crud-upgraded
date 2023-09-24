@@ -3,13 +3,14 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Person;
@@ -61,4 +62,17 @@ public class PersonController {
 
 		return personRepository.save(updatedPerson);
 	}
+
+	@DeleteMapping("/people/{id}")
+	public ResponseEntity<Void> deletePerson(@PathVariable long id) {
+		Optional<Person> person = personRepository.findById(id);
+
+		if (person.isPresent()) {
+			personRepository.deleteById(id);
+			return ResponseEntity.ok().build(); // 200 OK
+		} else {
+			return ResponseEntity.notFound().build(); // 404 Not Found
+		}
+	}
+
 }

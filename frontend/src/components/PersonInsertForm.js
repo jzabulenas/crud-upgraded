@@ -1,30 +1,35 @@
 import { useState } from "react";
 
-export default function PersonUpdateForm({ person, onSubmit, onCancel }) {
-  const [personData, setPersonData] = useState({ ...person });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setPersonData({
-      ...personData,
-      [name]: value,
-    });
-  };
-
+export default function PersonInsertForm({ onCancel, onSubmit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(personData);
+
+    const form = e.target;
+    const formData = new FormData(form);
+    const formJson = JSON.stringify(Object.fromEntries(formData.entries()));
+
+    fetch("http://localhost:8080/people", {
+      method: form.method,
+      body: formJson,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    onSubmit();
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      method="post"
+      onSubmit={handleSubmit}
+    >
       <label>
         First name:
         <input
           type="text"
           name="firstName"
-          value={personData.firstName}
-          onChange={handleInputChange}
+          defaultValue={""}
         />
       </label>
 
@@ -33,8 +38,7 @@ export default function PersonUpdateForm({ person, onSubmit, onCancel }) {
         <input
           type="text"
           name="lastName"
-          value={personData.lastName}
-          onChange={handleInputChange}
+          defaultValue={""}
         />
       </label>
 
@@ -43,8 +47,7 @@ export default function PersonUpdateForm({ person, onSubmit, onCancel }) {
         <input
           type="text"
           name="birthday"
-          value={personData.birthday}
-          onChange={handleInputChange}
+          defaultValue={""}
         />
       </label>
 
@@ -53,8 +56,7 @@ export default function PersonUpdateForm({ person, onSubmit, onCancel }) {
         <input
           type="text"
           name="address"
-          value={personData.address}
-          onChange={handleInputChange}
+          defaultValue={""}
         />
       </label>
 
@@ -63,8 +65,7 @@ export default function PersonUpdateForm({ person, onSubmit, onCancel }) {
         <input
           type="text"
           name="city"
-          value={personData.city}
-          onChange={handleInputChange}
+          defaultValue={""}
         />
       </label>
 
@@ -73,8 +74,7 @@ export default function PersonUpdateForm({ person, onSubmit, onCancel }) {
         <input
           type="text"
           name="state"
-          value={personData.state}
-          onChange={handleInputChange}
+          defaultValue={""}
         />
       </label>
 
@@ -83,8 +83,7 @@ export default function PersonUpdateForm({ person, onSubmit, onCancel }) {
         <input
           type="number"
           name="zipCode"
-          value={personData.zipCode}
-          onChange={handleInputChange}
+          defaultValue={""}
         />
       </label>
 
@@ -93,8 +92,7 @@ export default function PersonUpdateForm({ person, onSubmit, onCancel }) {
         <input
           type="text"
           name="phoneNumber"
-          value={personData.phoneNumber}
-          onChange={handleInputChange}
+          defaultValue={""}
         />
       </label>
 
