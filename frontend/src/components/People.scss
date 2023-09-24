@@ -1,50 +1,61 @@
 @media screen and (max-width: 700px) {
+  // Set App.css container width so table goes full width
+  .container {
+    width: auto;
+  }
 
-    // Set App.css container width so table goes full width
-    .container {
-        width: auto;
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+
+    td {
+      padding: 7px 10px;
+      border: 1px solid;
+    }
+  }
+
+  .responsive {
+    thead {
+      visibility: hidden;
+      height: 0;
+      position: absolute;
     }
 
-    .table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 40px;
-
-        td {
-            padding: 7px 10px;
-            border: 1px solid;
-        }
+    tr {
+      display: block;
+      margin-bottom: 0.625em;
     }
 
-    .responsive {
-        thead {
-            visibility: hidden;
-            height: 0;
-            position: absolute;
-        }
+    td {
+      border: 1px solid;
+      border-bottom: none;
+      display: block;
+      font-size: 0.8em;
+      text-align: right;
 
-        tr {
-            display: block;
-            margin-bottom: .625em;
-        }
+      &::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
 
-        td {
-            border: 1px solid;
-            border-bottom: none;
-            display: block;
-            font-size: .8em;
-            text-align: right;
-
-            &::before {
-                content: attr(data-label);
-                float: left;
-                font-weight: bold;
-                text-transform: uppercase;
-            }
-
-            &:last-child {
-                border-bottom: 1px solid;
-            }
-        }
+      &:last-child {
+        border-bottom: 1px solid;
+      }
     }
+  }
+}
+
+// Make update and insert form input fields a column
+input {
+  display: block;
+}
+
+.table,
+th,
+td {
+  border: 1px solid;
+  border-collapse: collapse;
 }
