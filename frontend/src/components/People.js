@@ -112,8 +112,8 @@ export default function People() {
 
       {newPerson && (
         <PersonInsertForm
-          onSubmit={() => setNewPerson(null)}
-          onCancel={() => setNewPerson(null)}
+          onSubmit={() => setNewPerson(!newPerson)}
+          onCancel={() => setNewPerson(!newPerson)}
         />
       )}
 
