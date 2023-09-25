@@ -38,9 +38,9 @@ class PersonControllerTest {
 		// Create some test data
 		List<Person> people = new ArrayList<>();
 		people.add(new Person("Michael", "Wood", "January 28, 1973", "3664 Vineyard Drive",
-				"Cleveland", "Ohio", 44115, "440-457-6732"));
+				"Cleveland", "Ohio", 44115));
 		people.add(new Person("Rodney", "Bonilla", "November 9, 1945", "1419 Cambridge Court",
-				"Phoenix", "Arizona", 85034, "480-200-1008"));
+				"Phoenix", "Arizona", 85034));
 
 		// Mock the behavior of the personRepository
 		when(personRepository.findAll())
@@ -58,7 +58,7 @@ class PersonControllerTest {
 	@Test
 	public void testGetPerson() throws Exception {
 		Person person = new Person("Michael", "Wood", "January 28, 1973", "3664 Vineyard Drive",
-				"Cleveland", "Ohio", 44115, "440-457-6732");
+				"Cleveland", "Ohio", 44115);
 
 		when(personRepository.findById(0L))
 				.thenReturn(Optional.of(person));
@@ -73,7 +73,7 @@ class PersonControllerTest {
 	public void testAddPerson() throws Exception {
 		// Create a sample person
 		Person person = new Person("John", "Doe", "January 1, 1990", "123 Main St", "City", "State",
-				12345, "123-456-7890");
+				12345);
 
 		// Set up the behavior of personRepository.save
 		when(personRepository.save(any()))
@@ -99,7 +99,7 @@ class PersonControllerTest {
 	public void testUpdatePerson() throws Exception {
 		// Create a sample person
 		Person person = new Person("John", "Doe", "January 1, 1990", "123 Main St", "City",
-				"State", 12345, "123-456-7890");
+				"State", 12345);
 
 		// Set up the behavior of personRepository.findById
 		when(personRepository.findById(0L))
@@ -134,7 +134,7 @@ class PersonControllerTest {
 	public void testDeletePerson() throws Exception {
 		// Create a sample person
 		Person person = new Person("John", "Doe", "January 1, 1990", "123 Main St", "City", "State",
-				12345, "123-456-7890");
+				12345);
 
 		when(personRepository.findById(1L))
 				.thenReturn(Optional.of(person));

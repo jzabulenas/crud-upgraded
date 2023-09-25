@@ -55,7 +55,6 @@ public class PersonController {
 			person.setCity(updatedPerson.getCity());
 			person.setState(updatedPerson.getState());
 			person.setZipCode(updatedPerson.getZipCode());
-			person.setPhoneNumber(updatedPerson.getPhoneNumber());
 
 			return personRepository.save(person);
 		}

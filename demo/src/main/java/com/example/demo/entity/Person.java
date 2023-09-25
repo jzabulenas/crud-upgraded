@@ -1,7 +1,5 @@
 package com.example.demo.entity;
 
-import java.util.Date;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,14 +20,13 @@ public class Person {
 	private String city;
 	private String state;
 	private int zipCode;
-	private String phoneNumber;
-	
+
 	public Person() {
-		
+
 	}
 
 	public Person(String firstName, String lastName, String birthday, String address, String city, String state,
-			int zipCode, String phoneNumber) {
+			int zipCode) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthday = birthday;
@@ -37,7 +34,6 @@ public class Person {
 		this.city = city;
 		this.state = state;
 		this.zipCode = zipCode;
-		this.phoneNumber = phoneNumber;
 	}
 
 	public long getId() {
@@ -102,14 +98,6 @@ public class Person {
 
 	public void setZipCode(int zipCode) {
 		this.zipCode = zipCode;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
 	}
 
 }
