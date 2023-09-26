@@ -1,9 +1,14 @@
 package com.example.demo.entity;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -28,6 +33,10 @@ public class Person {
 	private String state;
 	@NotNull
 	private int zipCode;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "Person_id", nullable = false)
+	// TODO: add check programmatically on setter
+	private List<PhoneNumber> phoneNumbers;
 
 	public Person() {
 
