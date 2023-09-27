@@ -16,105 +16,112 @@ import jakarta.validation.constraints.NotNull;
 @Table(name = "People")
 public class Person {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	@NotNull
-	private String firstName;
-	@NotNull
-	private String lastName;
-	@NotNull
-	private String birthday;
-	@NotNull
-	private String address;
-	@NotNull
-	private String city;
-	@NotNull
-	private String state;
-	@NotNull
-	private int zipCode;
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "Person_id", nullable = false)
-	// TODO: add check programmatically on setter
-	private List<PhoneNumber> phoneNumbers;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @NotNull
+    private String firstName;
+    @NotNull
+    private String lastName;
+    @NotNull
+    private String birthday;
+    @NotNull
+    private String address;
+    @NotNull
+    private String city;
+    @NotNull
+    private String state;
+    @NotNull
+    private int zipCode;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Person_id", nullable = false)
+    // TODO: add check programmatically on setter
+    private List<PhoneNumber> phoneNumbers;
 
-	public Person() {
+    public Person() {
 
-	}
+    }
 
-	public Person(String firstName, String lastName, String birthday, String address, String city, String state,
-			int zipCode) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.birthday = birthday;
-		this.address = address;
-		this.city = city;
-		this.state = state;
-		this.zipCode = zipCode;
-	}
+    public Person(String firstName, String lastName, String birthday, String address, String city, String state,
+                  int zipCode) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthday = birthday;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+    }
 
-	public long getId() {
-		return id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public String getBirthday() {
-		return birthday;
-	}
+    public String getBirthday() {
+        return birthday;
+    }
 
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
-	}
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public String getCity() {
-		return city;
-	}
+    public String getCity() {
+        return city;
+    }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public String getState() {
-		return state;
-	}
+    public String getState() {
+        return state;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
+    public void setState(String state) {
+        this.state = state;
+    }
 
-	public int getZipCode() {
-		return zipCode;
-	}
+    public int getZipCode() {
+        return zipCode;
+    }
 
-	public void setZipCode(int zipCode) {
-		this.zipCode = zipCode;
-	}
+    public void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
+    }
 
+    public List<PhoneNumber> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
+    }
 }
