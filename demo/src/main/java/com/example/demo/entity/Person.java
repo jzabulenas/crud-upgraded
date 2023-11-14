@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -18,126 +19,127 @@ import jakarta.validation.constraints.NotNull;
 @Table(name = "People")
 public class Person {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	@NotNull
-	private String firstName;
-	@NotNull
-	private String lastName;
-	@NotNull
-	private String birthday;
-	@NotNull
-	private String address;
-	@NotNull
-	private String city;
-	@NotNull
-	private String state;
-	@NotNull
-	private int zipCode;
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "Person_id",
-			nullable = false)
-	// TODO: add check programmatically on setter
-	private List<PhoneNumber> phoneNumbers;
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "People_groups",
-			joinColumns = @JoinColumn(name = "Person_id"),
-			inverseJoinColumns = @JoinColumn(name = "Group_id"))
-	private List<Group> groups;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @NotNull
+    private String firstName;
+    @NotNull
+    private String lastName;
+    @NotNull
+    private String birthday;
+    @NotNull
+    private String address;
+    @NotNull
+    private String city;
+    @NotNull
+    private String state;
+    @NotNull
+    private int zipCode;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Person_id",
+            nullable = false)
+    // TODO: add check programmatically on setter
+    private List<PhoneNumber> phoneNumbers;
 
-	public Person() {
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "People_groups",
+            joinColumns = @JoinColumn(name = "Person_id"),
+            inverseJoinColumns = @JoinColumn(name = "Group_id"))
+    private List<Group> groups;
 
-	}
+    public Person() {
 
-	public Person(String firstName, String lastName, String birthday, String address, String city,
-			String state, int zipCode) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.birthday = birthday;
-		this.address = address;
-		this.city = city;
-		this.state = state;
-		this.zipCode = zipCode;
-	}
+    }
 
-	public long getId() {
-		return id;
-	}
+    public Person(String firstName, String lastName, String birthday, String address, String city,
+                  String state, int zipCode) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthday = birthday;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public String getBirthday() {
-		return birthday;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
-	}
+    public String getBirthday() {
+        return birthday;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public String getCity() {
-		return city;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    public String getCity() {
+        return city;
+    }
 
-	public String getState() {
-		return state;
-	}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
+    public String getState() {
+        return state;
+    }
 
-	public int getZipCode() {
-		return zipCode;
-	}
+    public void setState(String state) {
+        this.state = state;
+    }
 
-	public void setZipCode(int zipCode) {
-		this.zipCode = zipCode;
-	}
+    public int getZipCode() {
+        return zipCode;
+    }
 
-	public List<PhoneNumber> getPhoneNumbers() {
-		return phoneNumbers;
-	}
+    public void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
+    }
 
-	public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-		this.phoneNumbers = phoneNumbers;
-	}
+    public List<PhoneNumber> getPhoneNumbers() {
+        return phoneNumbers;
+    }
 
-	public List<Group> getGroups() {
-		return groups;
-	}
+    public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
+    }
 
-	public void setGroups(List<Group> groups) {
-		this.groups = groups;
-	}
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+    }
 }
